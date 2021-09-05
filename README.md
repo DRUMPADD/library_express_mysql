@@ -1,12 +1,12 @@
 ### Website about simple library with login and register form
 
-## Install modules
+## Install modules 📂
 ```
 npm install
 ```
 
 
-## Install modules
+## Run app 🚀
 ```
 npm run dev
 ```
