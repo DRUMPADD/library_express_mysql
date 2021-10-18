@@ -92,7 +92,7 @@ app.get('/biblioteca/', async (req, res) => {
 app.get('/biblioteca/books', async (req, res) => {
     if(req.session.loggedin) {
         const books = await models.getBooks();
-        const authors = await models.getAuthors     ();
+        const authors = await models.getAuthors();
 
         res.render('books.html', {
             title: 'Books',
@@ -111,8 +111,12 @@ app.post('/biblioteca/books/saveBook', async (req, res) => {
 
         if(book_name && select_author) {
             const form = await models.insertBook(book_name, select_author);
-            console.log("Book saved");
-            res.redirect("/biblioteca");
+            if(form) {
+                console.log("Book saved");
+                res.redirect("/biblioteca");
+            }
+        } else {
+            res.redirect("/biblioteca/books");
         }
     } else {
         res.redirect("/");
